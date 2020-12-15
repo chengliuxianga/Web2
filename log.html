@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+        background-image: url(images/bac.jpg);
+    }
+    #first{
+        width: 300px;
+        height: 50px;
+        border: 2px solid #F5F5F5;
+        display: inline-block;
+        text-align: center;
+        margin-top: 150px;
+        margin-left: 300px;
+        position: absolute;
+    }
+    #fir-head{
+        width: 75px;
+        height: 50px;
+        text-align: center;
+        padding: 15px auto;
+        line-height: 50px;
+        margin-left: 10px;
+        color:  #808080;
+    }
+    #fir-las{
+        position: relative;
+        top: -50px;
+        left: 96px;
+        width: 150px;
+    }
+    #text1,#text1-1{
+        display: inline-block;
+        height: 44px;
+        width: 200px;
+        outline: none;
+        border: 0px;
+        background:none;
+        font-size: 20px;
+    }
+    #new{
+        position: relative;
+        top: 210px;
+        left: 300px;
+    }
+    #new1,#new2{
+        font-size: 15px;
+        display: none;
+        width: 30px;
+        color: #DCDCDC;
+    }
+    /* 第二个输入框 */
+    #second{
+        width: 300px;
+        height: 50px;
+        border: 2px solid #F5F5F5;
+        display: inline-block;
+        text-align: center;
+        margin-top: 225px;
+        margin-left: 300px;
+        position: absolute;
+    }
+    #sec-head{
+        width: 75px;
+        height: 50px;
+        text-align: center;
+        padding: 15px auto;
+        line-height: 50px;
+        margin-left: 10px;
+        color:  #808080;
+    }
+    #sec-las{
+        position: relative;
+        top: -50px;
+        left: 96px;
+        width: 150px;
+    }
+    #text2,#text2-2{
+        display: inline-block;
+        height: 44px;
+        width: 200px;
+        outline: none;
+        border: 0px;
+        background:none;
+        font-size: 20px;
+    }
+    #password-text{
+        position: relative;
+        top: 295px;
+        left: 300px;
+    }
+    #password-text-1,#password-text-2{
+        font-size: 15px;
+        color: #DCDCDC;
+        display: none;
+        width: 5px;
+        height: 15px;
+    }
+    #submit{
+        background-color: red;
+        margin-top: 300px;
+        margin-left: 300px;
+        width: 300px;
+        height: 50px;
+        outline: none;
+        border: 0px;
+    }
+    #submit1{
+        background-color: red;
+        width: 300px;
+        height: 50px;
+        outline: none;
+        border: 0px;
+        position: relative;
+        top: 60px;
+        left: -305px;
+    }
+    #info{
+        margin-top: -200px;
+        margin-left: 715px;
+    }
+    ul li{
+        height: 60px;
+        color: red;
+        font-size: 18px;
+        list-style:none;
+        line-height: 60px;
+    }
+    #log{
+        position: absolute;
+    }
+    #time{
+        height: 30px;
+        margin-left: 100px;
+        font-size: 25px;
+    }
+    #log1{
+        display: none;
+    }
+  </style>
+</head>
+<body>
+    <div id="log">
+        <div id="first">
+            <div id="fir-head">用&nbsp;户&nbsp;名</div>
+            <div id="fir-las"><input type="text" id="text1-1"></div> 
+        </div>
+        <div id="second">
+            <div id="sec-head">登陆密码</div>
+            <div id="sec-las"><input type="text" id="text2-2"></div> 
+        </div>
+        <input type="button" id="submit" value="立即登陆" style="color:white" onclick="toClose()">
+        <input type="button" id="submit1" value="立即注册" style="color:white" onclick="toOpen()">
+        <div id="time">
+            
+        </div>
+    </div>
+    <div id="log1">
+        <div id="first">
+            <div id="fir-head">用&nbsp;户&nbsp;名</div>
+            <div id="fir-las"><input type="text" id="text1" onclick="input()" onblur="input1()"></div> 
+        </div>
+        <div id="new">
+            <span id="new1">支持中文数字</span>
+            <span id="new2">用户名不能为空</span>
+        </div>
+        <div id="second">
+            <div id="sec-head">设置密码</div>
+            <div id="sec-las"><input type="text" id="text2" onclick="passput()" onblur="passput1()"></div> 
+        </div>
+        <div id="password-text">
+            <span id="password-text-1">建议使用两种字符组合</span>
+            <span id="password-text-2">密码不能为空</span>
+        </div>
+        <input type="button" id="submit" value="立即注册" style="color:white" onclick="toDisplay()">
+        <div id="info">
+            <ul>
+                <li id="inf1"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var time=document.getElementById("time");
+    var count=4;
+    var out;
+    function toClose(){
+        var i = document.getElementById("text1-1");
+        var j = document.getElementById("text2-2");
+        if (i.value!="" && j.value!="")
+        {
+            out=setInterval(function(){
+                count--;
+                if (count==0){
+                    clearInterval(out);
+                    window.open("index.html",'_self')
+                }
+                time.innerHTML="还有"+count+"s"+"返回";
+            },1000);
+
+        }
+        if (i.value=="" || j.value=="")
+        {
+            alert("请正确输入用户名和密码");
+        }
+    }
+    function toOpen(){
+        var log = document.getElementById("log");
+        var log1 = document.getElementById("log1");
+        log.style.display="none";
+        log1.style.display="inline-block";
+        time.innerHTML="";
+        clearInterval(out);
+        count=4;
+        var i = document.getElementById("text1-1");
+        var j = document.getElementById("text2-2");
+        i.value="";
+        j.value="";
+    }
+    function input(){
+        var i = document.getElementById("new1");
+        i.style.display="inline";
+        var j = document.getElementById("new2");
+        j.style.display="none";
+    }
+    function input1(){
+        var m = document.getElementById("new1");
+        m.style.display="none";
+        var i = document.getElementById("text1");
+        if (i.value==""){
+            var j = document.getElementById("new2");
+            j.style.display="inline";
+        }
+    }
+    function passput(){
+        var i = document.getElementById("password-text-1");
+        i.style.display="inline";
+        var j = document.getElementById("password-text-2");
+        j.style.display="none";
+    }
+    function passput1(){
+        var m = document.getElementById("password-text-1");
+        m.style.display="none";
+        var i = document.getElementById("text2");
+        if (i.value==""){
+            var j = document.getElementById("password-text-2");
+            j.style.display="inline";
+        }
+    }
+    function toDisplay(){
+        var name=document.getElementById("text1");
+        var password=document.getElementById("text2");
+        if (name.value!="" && password.value!=""){
+           var log = document.getElementById("log");
+           var log1 = document.getElementById("log1");
+           log1.style.display="none";
+           log.style.display="inline-block";
+           name.value="";
+           password.value="";
+        }
+        else{
+            document.getElementById("inf1").innerHTML="注册失败!请再次尝试";
+        }      
+    }
+</script>
+</html>

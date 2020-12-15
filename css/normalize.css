@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+li {
+    list-style: none;
+}
+
+/*伪元素写1个或者2个冒号都可以*/
+.clear::after {
+    content: '';
+    height: 0;
+    display: block;
+    clear: both;
+}
